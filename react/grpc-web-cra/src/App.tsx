@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import './App.css'
-import {
-    createPromiseClient,
-    createConnectTransport,
-} from '@bufbuild/connect-web'
-import { ElizaService } from './gen/buf/connect/demo/eliza/v1/eliza_connectweb.js'
-import { IntroduceRequest } from './gen/buf/connect/demo/eliza/v1/eliza_pb.js'
+
+import * as grpcWeb from 'grpc-web'
+import { ElizaServiceClient } from './gen/ElizaServiceClientPb.js'
+import { SayRequest, IntroduceRequest } from './gen/eliza_pb'
 
 interface Response {
     text: string
     sender: 'eliza' | 'user'
 }
+
+const client = new ElizaServiceClient('https://demo.connect.build')
 
 function App() {
     const [statement, setStatement] = useState<string>('')
@@ -22,40 +22,34 @@ function App() {
         },
     ])
 
-    // Make the Eliza Service client
-    const client = createPromiseClient(
-        ElizaService,
-        createConnectTransport({
-            baseUrl: 'https://demo.connect.build',
-        })
-    )
-
     const send = async (sentence: string) => {
         setResponses((resp) => [...resp, { text: sentence, sender: 'user' }])
         setStatement('')
 
         if (introFinished) {
-            const response = await client.say({
-                sentence,
-            })
+            const req = new SayRequest()
+            req.setSentence('Hi!')
+            const response = await client.say(req, {})
 
             setResponses((resp) => [
                 ...resp,
-                { text: response.sentence, sender: 'eliza' },
+                { text: response.getSentence(), sender: 'eliza' },
             ])
         } else {
-            const request = new IntroduceRequest({
-                name: sentence,
-            })
+            const request = new IntroduceRequest()
+            request.setName(sentence)
 
-            for await (const response of client.introduce(request)) {
-                setResponses((resp) => [
-                    ...resp,
-                    { text: response.sentence, sender: 'eliza' },
-                ])
-            }
-
-            setIntroFinished(true)
+            client
+                .introduce(request, {})
+                .on('data', (response) => {
+                    setResponses((resp) => [
+                        ...resp,
+                        { text: response.getSentence(), sender: 'eliza' },
+                    ])
+                })
+                .on('end', () => {
+                    setIntroFinished(true)
+                })
         }
     }
 
