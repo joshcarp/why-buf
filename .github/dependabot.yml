@@ -36,7 +36,7 @@ updates:
       timezone: UTC
       time: "07:00"
   - package-ecosystem: "npm"
-    directory: "react/cra"
+    directory: "react/connect"
     schedule:
       interval: "monthly"
       timezone: UTC
