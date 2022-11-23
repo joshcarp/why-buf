@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@buf/bufbuild_eliza.bufbuild_connect-web": "^0.3.1-20221108170037-30afbf7c670d.3",
+    "@buf/bufbuild_eliza.bufbuild_es": "^0.2.1-20221108170037-30afbf7c670d.3",
+    "@buf/bufbuild_eliza.protocolbuffers_js": "^3.21.2-20221108170037-30afbf7c670d.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
