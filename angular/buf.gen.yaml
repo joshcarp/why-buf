@@ -1,9 +1,0 @@
-# This template is to generate connect-web artifacts for the Eliza demo.
-version: v1
-plugins:
-  - name: es
-    out: src/gen
-    # Note that opt: target=ts is not supported
-  - name: connect-web
-    out: src/gen
-    # Note that opt: target=ts is not supported
