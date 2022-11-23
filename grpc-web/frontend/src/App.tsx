@@ -10,7 +10,7 @@ interface Response {
     sender: 'eliza' | 'user'
 }
 
-const client = new ElizaServiceClient('http://localhost:8082')
+const client = new ElizaServiceClient('http://localhost:8080')
 
 function App() {
     const [statement, setStatement] = useState<string>('')

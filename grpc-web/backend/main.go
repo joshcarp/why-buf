@@ -27,7 +27,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/joshcarp/grpc-vs-connect/grpc-web/backend/pkg/eliza"
+	"github.com/joshcarp/eliza"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
