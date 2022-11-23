@@ -10,7 +10,7 @@ interface Response {
     sender: 'eliza' | 'user'
 }
 
-const client = new ElizaServiceClient('https://demo.connect.build')
+const client = new ElizaServiceClient('http://localhost:8090')
 
 function App() {
     const [statement, setStatement] = useState<string>('')
@@ -29,7 +29,7 @@ function App() {
         if (introFinished) {
             const req = new SayRequest()
             req.setSentence('Hi!')
-            const response = await client.say(req, {})
+            const response = await client.say(req, {"Access-Control-Allow-Origin":"*", "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"})
 
             setResponses((resp) => [
                 ...resp,
