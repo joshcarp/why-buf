@@ -2,8 +2,8 @@ import {
     createPromiseClient,
     createConnectTransport,
 } from '@bufbuild/connect-web'
-import { ElizaService } from './gen/buf/connect/demo/eliza/v1/eliza_connectweb.js'
-import { IntroduceRequest } from './gen/buf/connect/demo/eliza/v1/eliza_pb.js'
+import { ElizaService } from '@buf/bufbuild_eliza.bufbuild_connect-web/buf/connect/demo/eliza/v1/eliza_connectweb.js'
+import { IntroduceRequest } from '@buf/bufbuild_eliza.bufbuild_es/buf/connect/demo/eliza/v1/eliza_pb.js'
 
 test('imports ElizaService correctly', () => {
     expect(ElizaService).toBeDefined()
