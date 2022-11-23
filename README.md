@@ -11,3 +11,9 @@ There are two directories:
 - connect:
   - connect go backend application
   - connect-web frontend application
+
+
+See the difference:
+```
+cloc --exclude-dir=node_modules --include-ext=go,js,ts,proto,yaml --diff grpc-web connect
+```
