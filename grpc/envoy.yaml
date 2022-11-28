@@ -11,7 +11,7 @@ static_resources:
       address:
         socket_address:
           address: 0.0.0.0
-          port_value: 8082
+          port_value: 8072
       filter_chains:
         - filters:
             - name: envoy.http_connection_manager
@@ -51,4 +51,4 @@ static_resources:
       hosts:
         - socket_address:
             address: backend
-            port_value: 8081
+            port_value: 8071

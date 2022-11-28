@@ -5,20 +5,14 @@ services:
       context: .
       dockerfile: frontend.Dockerfile
     ports:
-      - 8073:8073
+      - 8093:8093
     environment:
-      - PORT=8073
+      - PORT=8093
   backend:
     build:
       context: .
       dockerfile: backend.Dockerfile
     ports:
-      - 8071:8071
+      - 8091:8091
     environment:
-      - PORT=8071
-  envoy:
-    image: envoyproxy/envoy:v1.14.4
-    volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml
-    ports:
-      - 8072:8072
+      - PORT=8091
