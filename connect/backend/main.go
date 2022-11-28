@@ -23,6 +23,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
 	"time"
 
@@ -48,7 +49,7 @@ func main() {
 	}
 	srv := &http.Server{
 		Addr:    addr,
-		Handler: h2c.NewHandler(cors(mux), &http2.Server{}),
+		Handler: h2c.NewHandler(corsall(mux), &http2.Server{}),
 	}
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
@@ -65,10 +66,13 @@ func main() {
 	}
 }
 
-func cors(h http.Handler) http.Handler {
+func corsall(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		writer.Header().Set("Access-Control-Allow-Origin", "*")
 		writer.Header().Set("Access-Control-Allow-Methods", "*")
+		writer.Header().Set("Access-Control-Allow-Headers", "*")
+		writer.Header().Set("Access-Control-Expose-Headers", "*")
+		writer.Header().Set("Access-Control-Max-Age", strconv.Itoa(int(2*time.Hour/time.Second)))
 		h.ServeHTTP(writer, request)
 	})
 }

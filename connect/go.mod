@@ -7,6 +7,7 @@ require (
 	buf.build/gen/go/bufbuild/eliza/protocolbuffers/go v1.28.1-20221108170037-30afbf7c670d.4
 	github.com/bufbuild/connect-go v1.1.0
 	github.com/joshcarp/eliza v0.0.0-20221123204923-649a8fcc71d3
+	github.com/rs/cors v1.8.2
 	golang.org/x/net v0.2.0
 )
 
