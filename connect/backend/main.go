@@ -18,12 +18,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/rs/cors"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
-	"strconv"
 	"syscall"
 	"time"
 
@@ -49,7 +49,7 @@ func main() {
 	}
 	srv := &http.Server{
 		Addr:    addr,
-		Handler: h2c.NewHandler(corsall(mux), &http2.Server{}),
+		Handler: h2c.NewHandler(newCORS().Handler(mux), &http2.Server{}),
 	}
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
@@ -64,17 +64,6 @@ func main() {
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Fatalf("HTTP shutdown: %v", err) //nolint:gocritic
 	}
-}
-
-func corsall(h http.Handler) http.Handler {
-	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
-		writer.Header().Set("Access-Control-Allow-Origin", "*")
-		writer.Header().Set("Access-Control-Allow-Methods", "*")
-		writer.Header().Set("Access-Control-Allow-Headers", "*")
-		writer.Header().Set("Access-Control-Expose-Headers", "*")
-		writer.Header().Set("Access-Control-Max-Age", strconv.Itoa(int(2*time.Hour/time.Second)))
-		h.ServeHTTP(writer, request)
-	})
 }
 
 func (e *elizaServer) Introduce(
@@ -152,4 +141,43 @@ func (e *elizaServer) Say(
 	return connect.NewResponse(&elizav1.SayResponse{
 		Sentence: reply,
 	}), nil
+}
+
+func newCORS() *cors.Cors {
+	// To let web developers play with the demo service from browsers, we need a
+	// very permissive CORS setup.
+	return cors.New(cors.Options{
+		AllowedMethods: []string{
+			http.MethodHead,
+			http.MethodGet,
+			http.MethodPost,
+			http.MethodPut,
+			http.MethodPatch,
+			http.MethodDelete,
+		},
+		AllowOriginFunc: func(origin string) bool {
+			// Allow all origins, which effectively disables CORS.
+			return true
+		},
+		AllowedHeaders: []string{"*"},
+		ExposedHeaders: []string{
+			// Content-Type is in the default safelist.
+			"Accept",
+			"Accept-Encoding",
+			"Accept-Post",
+			"Connect-Accept-Encoding",
+			"Connect-Content-Encoding",
+			"Content-Encoding",
+			"Grpc-Accept-Encoding",
+			"Grpc-Encoding",
+			"Grpc-Message",
+			"Grpc-Status",
+			"Grpc-Status-Details-Bin",
+		},
+		// Let browsers cache CORS information for longer, which reduces the number
+		// of preflight requests. Any changes to ExposedHeaders won't take effect
+		// until the cached data expires. FF caps this value at 24h, and modern
+		// Chrome caps it at 2h.
+		MaxAge: int(2 * time.Hour / time.Second),
+	})
 }
