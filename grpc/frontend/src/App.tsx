@@ -29,7 +29,7 @@ function App() {
         if (introFinished) {
             const req = new SayRequest()
             req.setSentence('Hi!')
-            const response = await client.say(req, {"Access-Control-Allow-Origin":"*", "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"})
+            const response = await client.say(req, {})
 
             setResponses((resp) => [
                 ...resp,
