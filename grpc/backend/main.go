@@ -18,6 +18,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	elizav1 "github.com/joshcarp/grpc-vs-connect/grpc-web/backend/gen/elizav1/eliza/v1"
 	"io"
 	"log"
 	"net"
@@ -30,8 +31,6 @@ import (
 	"github.com/joshcarp/eliza"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-
-	"github.com/joshcarp/grpc-vs-connect/grpc-web/backend/gen/proto/elizav1/eliza/v1"
 
 	"github.com/spf13/pflag"
 )
