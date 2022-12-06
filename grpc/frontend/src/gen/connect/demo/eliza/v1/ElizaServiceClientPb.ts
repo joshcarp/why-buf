@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for demo.eliza.v1
+ * @fileoverview gRPC-Web generated client stub for buf.connect.demo.eliza.v1
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class ElizaServiceClient {
   }
 
   methodDescriptorSay = new grpcWeb.MethodDescriptor(
-    '/demo.eliza.v1.ElizaService/Say',
+    '/buf.connect.demo.eliza.v1.ElizaService/Say',
     grpcWeb.MethodType.UNARY,
     connect_demo_eliza_v1_eliza_pb.SayRequest,
     connect_demo_eliza_v1_eliza_pb.SayResponse,
@@ -68,7 +68,7 @@ export class ElizaServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/demo.eliza.v1.ElizaService/Say',
+          '/buf.connect.demo.eliza.v1.ElizaService/Say',
         request,
         metadata || {},
         this.methodDescriptorSay,
@@ -76,14 +76,14 @@ export class ElizaServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/demo.eliza.v1.ElizaService/Say',
+      '/buf.connect.demo.eliza.v1.ElizaService/Say',
     request,
     metadata || {},
     this.methodDescriptorSay);
   }
 
   methodDescriptorIntroduce = new grpcWeb.MethodDescriptor(
-    '/demo.eliza.v1.ElizaService/Introduce',
+    '/buf.connect.demo.eliza.v1.ElizaService/Introduce',
     grpcWeb.MethodType.SERVER_STREAMING,
     connect_demo_eliza_v1_eliza_pb.IntroduceRequest,
     connect_demo_eliza_v1_eliza_pb.IntroduceResponse,
@@ -98,7 +98,7 @@ export class ElizaServiceClient {
     metadata?: grpcWeb.Metadata): grpcWeb.ClientReadableStream<connect_demo_eliza_v1_eliza_pb.IntroduceResponse> {
     return this.client_.serverStreaming(
       this.hostname_ +
-        '/demo.eliza.v1.ElizaService/Introduce',
+        '/buf.connect.demo.eliza.v1.ElizaService/Introduce',
       request,
       metadata || {},
       this.methodDescriptorIntroduce);

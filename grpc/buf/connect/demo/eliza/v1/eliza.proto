@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-package demo.eliza.v1;
+package buf.connect.demo.eliza.v1;
 
 option go_package = "github.com/joshcarp/grpc-vs-connect/grpc/backend/gen/demo/eliza/v1;elizav1";
 
