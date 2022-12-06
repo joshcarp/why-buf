@@ -1,4 +1,4 @@
-module github.com/joshcarp/grpc-vs-connect/grpc-web
+module github.com/joshcarp/grpc-vs-connect/grpc
 
 go 1.19
 
