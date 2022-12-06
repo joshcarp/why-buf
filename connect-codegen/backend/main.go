@@ -31,8 +31,8 @@ import (
 	"github.com/bufbuild/connect-go"
 	grpcreflect "github.com/bufbuild/connect-grpcreflect-go"
 	"github.com/joshcarp/eliza"
-	elizav1 "github.com/joshcarp/grpc-vs-connect/connect-codegen/backend/gen/demo/eliza/v1"
-	"github.com/joshcarp/grpc-vs-connect/connect-codegen/backend/gen/demo/eliza/v1/elizav1connect"
+	elizav1 "github.com/joshcarp/grpc-vs-connect/connect-codegen/backend/gen/buf/connect/demo/eliza/v1"
+	"github.com/joshcarp/grpc-vs-connect/connect-codegen/backend/gen/buf/connect/demo/eliza/v1/elizav1connect"
 
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
