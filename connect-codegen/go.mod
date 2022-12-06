@@ -1,4 +1,4 @@
-module github.com/joshcarp/grpc-vs-connect/connect
+module github.com/joshcarp/grpc-vs-connect/connect-codegen
 
 go 1.19
 
