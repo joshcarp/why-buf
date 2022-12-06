@@ -29,9 +29,9 @@ import (
 	"github.com/rs/cors"
 
 	"github.com/bufbuild/connect-go"
+	grpcreflect "github.com/bufbuild/connect-grpcreflect-go"
 	"github.com/joshcarp/eliza"
 	elizav1 "github.com/joshcarp/grpc-vs-connect/connect-codegen/backend/gen/demo/eliza/v1"
-
 	"github.com/joshcarp/grpc-vs-connect/connect-codegen/backend/gen/demo/eliza/v1/elizav1connect"
 
 	"golang.org/x/net/http2"
@@ -42,6 +42,12 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle(elizav1connect.NewElizaServiceHandler(
 		NewElizaServer(time.Millisecond * 500),
+	))
+	mux.Handle(grpcreflect.NewHandlerV1(
+		grpcreflect.NewStaticReflector(elizav1connect.ElizaServiceName),
+	))
+	mux.Handle(grpcreflect.NewHandlerV1Alpha(
+		grpcreflect.NewStaticReflector(elizav1connect.ElizaServiceName),
 	))
 	addr := "localhost:8080"
 	if port := os.Getenv("PORT"); port != "" {
