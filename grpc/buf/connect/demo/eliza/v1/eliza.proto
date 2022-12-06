@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package buf.connect.demo.eliza.v1;
 
-option go_package = "github.com/joshcarp/grpc-vs-connect/grpc/backend/gen/demo/eliza/v1;elizav1";
+option go_package = "github.com/joshcarp/grpc-vs-connect/grpc/backend/gen/buf/connect/demo/eliza/v1;elizav1";
 
 // ElizaService provides a way to talk to the ELIZA, which is a port of
 // the DOCTOR script for Joseph Weizenbaum's original ELIZA program.
