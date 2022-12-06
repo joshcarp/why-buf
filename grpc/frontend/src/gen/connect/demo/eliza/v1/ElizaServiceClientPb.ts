@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.2
 // 	protoc              v3.20.3
-// source: eliza/v1/eliza.proto
+// source: connect/demo/eliza/v1/eliza.proto
 
 
 /* eslint-disable */
@@ -17,7 +17,7 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as eliza_v1_eliza_pb from '../../eliza/v1/eliza_pb';
+import * as connect_demo_eliza_v1_eliza_pb from '../../../../connect/demo/eliza/v1/eliza_pb';
 
 
 export class ElizaServiceClient {
@@ -42,29 +42,29 @@ export class ElizaServiceClient {
   methodDescriptorSay = new grpcWeb.MethodDescriptor(
     '/demo.eliza.v1.ElizaService/Say',
     grpcWeb.MethodType.UNARY,
-    eliza_v1_eliza_pb.SayRequest,
-    eliza_v1_eliza_pb.SayResponse,
-    (request: eliza_v1_eliza_pb.SayRequest) => {
+    connect_demo_eliza_v1_eliza_pb.SayRequest,
+    connect_demo_eliza_v1_eliza_pb.SayResponse,
+    (request: connect_demo_eliza_v1_eliza_pb.SayRequest) => {
       return request.serializeBinary();
     },
-    eliza_v1_eliza_pb.SayResponse.deserializeBinary
+    connect_demo_eliza_v1_eliza_pb.SayResponse.deserializeBinary
   );
 
   say(
-    request: eliza_v1_eliza_pb.SayRequest,
-    metadata: grpcWeb.Metadata | null): Promise<eliza_v1_eliza_pb.SayResponse>;
+    request: connect_demo_eliza_v1_eliza_pb.SayRequest,
+    metadata: grpcWeb.Metadata | null): Promise<connect_demo_eliza_v1_eliza_pb.SayResponse>;
 
   say(
-    request: eliza_v1_eliza_pb.SayRequest,
+    request: connect_demo_eliza_v1_eliza_pb.SayRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: eliza_v1_eliza_pb.SayResponse) => void): grpcWeb.ClientReadableStream<eliza_v1_eliza_pb.SayResponse>;
+               response: connect_demo_eliza_v1_eliza_pb.SayResponse) => void): grpcWeb.ClientReadableStream<connect_demo_eliza_v1_eliza_pb.SayResponse>;
 
   say(
-    request: eliza_v1_eliza_pb.SayRequest,
+    request: connect_demo_eliza_v1_eliza_pb.SayRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: eliza_v1_eliza_pb.SayResponse) => void) {
+               response: connect_demo_eliza_v1_eliza_pb.SayResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -85,17 +85,17 @@ export class ElizaServiceClient {
   methodDescriptorIntroduce = new grpcWeb.MethodDescriptor(
     '/demo.eliza.v1.ElizaService/Introduce',
     grpcWeb.MethodType.SERVER_STREAMING,
-    eliza_v1_eliza_pb.IntroduceRequest,
-    eliza_v1_eliza_pb.IntroduceResponse,
-    (request: eliza_v1_eliza_pb.IntroduceRequest) => {
+    connect_demo_eliza_v1_eliza_pb.IntroduceRequest,
+    connect_demo_eliza_v1_eliza_pb.IntroduceResponse,
+    (request: connect_demo_eliza_v1_eliza_pb.IntroduceRequest) => {
       return request.serializeBinary();
     },
-    eliza_v1_eliza_pb.IntroduceResponse.deserializeBinary
+    connect_demo_eliza_v1_eliza_pb.IntroduceResponse.deserializeBinary
   );
 
   introduce(
-    request: eliza_v1_eliza_pb.IntroduceRequest,
-    metadata?: grpcWeb.Metadata): grpcWeb.ClientReadableStream<eliza_v1_eliza_pb.IntroduceResponse> {
+    request: connect_demo_eliza_v1_eliza_pb.IntroduceRequest,
+    metadata?: grpcWeb.Metadata): grpcWeb.ClientReadableStream<connect_demo_eliza_v1_eliza_pb.IntroduceResponse> {
     return this.client_.serverStreaming(
       this.hostname_ +
         '/demo.eliza.v1.ElizaService/Introduce',

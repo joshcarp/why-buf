@@ -18,7 +18,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	elizav1 "github.com/joshcarp/grpc-vs-connect/grpc/backend/gen/elizav1/eliza/v1"
+	elizav1 "github.com/joshcarp/grpc-vs-connect/grpc/backend/gen/connect/demo/eliza/v1"
 	"io"
 	"log"
 	"net"

@@ -1,4 +1,4 @@
-// source: eliza/v1/eliza.proto
+// source: connect/demo/eliza/v1/eliza.proto
 /**
  * @fileoverview
  * @enhanceable

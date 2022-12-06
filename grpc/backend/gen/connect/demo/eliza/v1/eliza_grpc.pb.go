@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.3
-// source: eliza/v1/eliza.proto
+// source: connect/demo/eliza/v1/eliza.proto
 
 package elizav1
 
@@ -245,5 +245,5 @@ var ElizaService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "eliza/v1/eliza.proto",
+	Metadata: "connect/demo/eliza/v1/eliza.proto",
 }
