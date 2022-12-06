@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './App.css'
 
 import * as grpcWeb from 'grpc-web'
-import { ElizaServiceClient } from './gen/ElizaServiceClientPb.js'
-import { SayRequest, IntroduceRequest } from './gen/eliza_pb'
+import { ElizaServiceClient } from './gen/eliza/v1/ElizaServiceClientPb.js'
+import { SayRequest, IntroduceRequest } from './gen/eliza/v1/eliza_pb'
 
 interface Response {
     text: string

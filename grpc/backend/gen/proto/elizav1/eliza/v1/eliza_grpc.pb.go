@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.3
-// source: eliza.proto
+// source: eliza/v1/eliza.proto
 
 package elizav1
 
@@ -43,7 +43,7 @@ func NewElizaServiceClient(cc grpc.ClientConnInterface) ElizaServiceClient {
 
 func (c *elizaServiceClient) Say(ctx context.Context, in *SayRequest, opts ...grpc.CallOption) (*SayResponse, error) {
 	out := new(SayResponse)
-	err := c.cc.Invoke(ctx, "/buf.connect.demo.eliza.v1.ElizaService/Say", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/demo.eliza.v1.ElizaService/Say", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *elizaServiceClient) Say(ctx context.Context, in *SayRequest, opts ...gr
 }
 
 func (c *elizaServiceClient) Converse(ctx context.Context, opts ...grpc.CallOption) (ElizaService_ConverseClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ElizaService_ServiceDesc.Streams[0], "/buf.connect.demo.eliza.v1.ElizaService/Converse", opts...)
+	stream, err := c.cc.NewStream(ctx, &ElizaService_ServiceDesc.Streams[0], "/demo.eliza.v1.ElizaService/Converse", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func (x *elizaServiceConverseClient) Recv() (*ConverseResponse, error) {
 }
 
 func (c *elizaServiceClient) Introduce(ctx context.Context, in *IntroduceRequest, opts ...grpc.CallOption) (ElizaService_IntroduceClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ElizaService_ServiceDesc.Streams[1], "/buf.connect.demo.eliza.v1.ElizaService/Introduce", opts...)
+	stream, err := c.cc.NewStream(ctx, &ElizaService_ServiceDesc.Streams[1], "/demo.eliza.v1.ElizaService/Introduce", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -165,7 +165,7 @@ func _ElizaService_Say_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/buf.connect.demo.eliza.v1.ElizaService/Say",
+		FullMethod: "/demo.eliza.v1.ElizaService/Say",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ElizaServiceServer).Say(ctx, req.(*SayRequest))
@@ -224,7 +224,7 @@ func (x *elizaServiceIntroduceServer) Send(m *IntroduceResponse) error {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ElizaService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "buf.connect.demo.eliza.v1.ElizaService",
+	ServiceName: "demo.eliza.v1.ElizaService",
 	HandlerType: (*ElizaServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -245,5 +245,5 @@ var ElizaService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "eliza.proto",
+	Metadata: "eliza/v1/eliza.proto",
 }
