@@ -34,6 +34,7 @@ import (
 	"github.com/joshcarp/eliza"
 
 	elizav1 "buf.build/gen/go/bufbuild/eliza/protocolbuffers/go/buf/connect/demo/eliza/v1"
+	grpcreflect "github.com/bufbuild/connect-grpcreflect-go"
 
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
@@ -43,6 +44,12 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle(elizav1connect.NewElizaServiceHandler(
 		NewElizaServer(time.Millisecond * 500),
+	))
+	mux.Handle(grpcreflect.NewHandlerV1(
+		grpcreflect.NewStaticReflector(elizav1connect.ElizaServiceName),
+	))
+	mux.Handle(grpcreflect.NewHandlerV1Alpha(
+		grpcreflect.NewStaticReflector(elizav1connect.ElizaServiceName),
 	))
 	addr := "localhost:8080"
 	if port := os.Getenv("PORT"); port != "" {
