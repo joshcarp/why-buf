@@ -9,10 +9,10 @@ require (
 	github.com/bufbuild/connect-grpcreflect-go v1.0.0
 	github.com/joshcarp/eliza v0.0.0-20221123204923-649a8fcc71d3
 	github.com/rs/cors v1.8.2
-	golang.org/x/net v0.2.0
+	golang.org/x/net v0.7.0
 )
 
 require (
-	golang.org/x/text v0.4.0 // indirect
+	golang.org/x/text v0.7.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 )
